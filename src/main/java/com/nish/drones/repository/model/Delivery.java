@@ -1,6 +1,8 @@
 package com.nish.drones.repository.model;
 
 import com.nish.drones.repository.helper.DroneModelType;
+import com.nish.drones.repository.helper.DroneState;
+import com.nish.drones.repository.helper.OrderState;
 import com.vladmihalcea.hibernate.type.array.IntArrayType;
 import com.vladmihalcea.hibernate.type.array.StringArrayType;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
@@ -39,8 +41,52 @@ public class Delivery {
     @Column(columnDefinition = "VARCHAR(40)")
     private String orderDetails;
 
+    @Enumerated(EnumType.STRING)
+    private OrderState orderState;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "drone_id", referencedColumnName = "id")
     private Drone drone;
 
+    public Delivery() {
+    }
+
+    public Delivery(String deliveryAddress, String orderDetails, OrderState orderState, Drone drone) {
+        this.deliveryAddress = deliveryAddress;
+        this.orderDetails = orderDetails;
+        this.orderState = orderState;
+        this.drone = drone;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public String getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(String orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    public OrderState getOrderState() {
+        return orderState;
+    }
+
+    public void setOrderState(OrderState orderState) {
+        this.orderState = orderState;
+    }
+
+    public Drone getDrone() {
+        return drone;
+    }
+
+    public void setDrone(Drone drone) {
+        this.drone = drone;
+    }
 }
