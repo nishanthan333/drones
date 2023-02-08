@@ -20,18 +20,10 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    DeliveryRepository deliveryRepository;
-
-    @Autowired
     OrderService orderService;
 
     @Autowired
     DroneService droneService;
-
-    @Autowired
-    MedicationOrderRepository medicationOrderRepository;
-
-
 
     @GetMapping("/order/{orderId}")
     public String getDrone(@PathVariable Long orderId) {
@@ -65,7 +57,5 @@ public class OrderController {
         return medications;
 
     }
-
-
 
 }

@@ -2,6 +2,7 @@ package com.nish.drones.controller;
 
 import com.nish.drones.repository.DroneRepository;
 import com.nish.drones.repository.model.Drone;
+import com.nish.drones.service.DroneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -12,17 +13,17 @@ import java.util.List;
 public class DroneController {
 
     @Autowired
-    DroneRepository droneRepository;
+    DroneService droneService;
 
     @GetMapping("/drones")
     public List<Drone> getAllDrones() {
-        return droneRepository.findAll();
+        return droneService.getAllDrones();
     }
 
     @PostMapping("/drone")
     public Drone addDrone(@Valid @RequestBody Drone drone) {
         try {
-            Drone createdDrone = droneRepository.save(drone);
+            Drone createdDrone = droneService.createDrone(drone);
             return createdDrone;
         } catch (Exception ex) {
             throw ex;
@@ -32,7 +33,7 @@ public class DroneController {
     @GetMapping("/drone/{drone_id}")
     public Drone getDrone(@PathVariable Long drone_id) {
         try {
-            Drone foundDrone = droneRepository.findById(drone_id).get();
+            Drone foundDrone = droneService.getDrone(drone_id);
             return foundDrone;
         } catch (Exception ex) {
             throw ex;
@@ -43,7 +44,7 @@ public class DroneController {
     public List<Drone> getDronesAvailableForLoading() {
         List<Drone> availableDrones = new ArrayList<>();
         try {
-            availableDrones = droneRepository.getAllDronesAvailableForLoading();
+            availableDrones = droneService.getDronesAvailableForLoading();
         } catch (Exception ex) {
             System.out.println(ex);
         }
