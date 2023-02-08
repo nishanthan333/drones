@@ -6,11 +6,13 @@ import com.nish.drones.repository.model.Medication;
 import com.nish.drones.repository.model.MedicationOrder;
 import com.nish.drones.service.DroneService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class DroneServiceImpl implements DroneService {
 
     @Autowired
