@@ -1,12 +1,9 @@
 package com.nish.drones.controller;
 
-import com.nish.drones.controller.request.OrderRequest;
-import com.nish.drones.repository.DeliveryRepository;
-import com.nish.drones.repository.MedicationOrderRepository;
+import com.nish.drones.controller.request.OrderRequestDto;
 import com.nish.drones.repository.model.Delivery;
 import com.nish.drones.repository.model.Drone;
 import com.nish.drones.repository.model.Medication;
-import com.nish.drones.repository.model.MedicationOrder;
 import com.nish.drones.service.DroneService;
 import com.nish.drones.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +23,16 @@ public class OrderController {
     DroneService droneService;
 
     @GetMapping("/order/{orderId}")
-    public String getDrone(@PathVariable Long orderId) {
+    public Drone getDrone(@PathVariable Long orderId) {
         try {
-            return "foundDrone";
+            return orderService.getDroneForOrder(orderId);
         } catch (Exception ex) {
             throw ex;
         }
     }
 
     @PostMapping("/order")
-    public Delivery placeOrder(@Valid @RequestBody OrderRequest orderRequest) {
+    public Delivery placeOrder(@Valid @RequestBody OrderRequestDto orderRequest) {
         Delivery delivery = new Delivery();
         try {
             delivery = orderService.makeAnOrder(orderRequest);
