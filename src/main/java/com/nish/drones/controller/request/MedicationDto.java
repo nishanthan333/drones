@@ -1,22 +1,27 @@
 package com.nish.drones.controller.request;
 
+import com.nish.drones.repository.model.Medication;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Data
 public class MedicationDto {
 
     @NotBlank(message = "The name is required.")
-    private String name;
+    String name;
 
-    @NotBlank(message = "The weight is required.")
-    private Double weight;
+    @NotNull(message = "The weight is required.")
+    Double weight;
 
-    @NotBlank(message = "The code is required.")
-    @Pattern(regexp = "^[A-Z]\\d{1,5}$", flags = { Pattern.Flag.CASE_INSENSITIVE, Pattern.Flag.MULTILINE }, message = "The code is invalid.")
-    private String code;
+    @NotBlank
+    String code;
 
-    private byte[] image;
+    byte[] image;
+
+    public Medication getMedication() {
+        return new Medication(name, weight, code);
+    }
 }
