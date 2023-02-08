@@ -11,13 +11,11 @@ Delivery Drone Manager System
 
 Run Following DB Commands
 
-* CREATE DATABASE nish_drone_manager;
+* docker start drones-db-1
 
-* CREATE USER nish WITH PASSWORD 'password';
+* docker exec -it drones-db-1 psql -U myuser
 
-* GRANT ALL PRIVILEGES ON DATABASE "nish_drone_manager" to nish;
-
-Start Application
+*  create database nish_drone_manager
 
 
 
