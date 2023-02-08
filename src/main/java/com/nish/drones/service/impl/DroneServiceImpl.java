@@ -1,7 +1,9 @@
 package com.nish.drones.service.impl;
 
 import com.nish.drones.repository.DeliveryRepository;
+import com.nish.drones.repository.DroneRepository;
 import com.nish.drones.repository.MedicationOrderRepository;
+import com.nish.drones.repository.model.Drone;
 import com.nish.drones.repository.model.Medication;
 import com.nish.drones.repository.model.MedicationOrder;
 import com.nish.drones.service.DroneService;
@@ -19,7 +21,15 @@ public class DroneServiceImpl implements DroneService {
     DeliveryRepository deliveryRepository;
 
     @Autowired
+    DroneRepository droneRepository;
+
+    @Autowired
     MedicationOrderRepository medicationOrderRepository;
+
+    @Override
+    public List<Drone> getAllDrones() {
+        return droneRepository.findAll();
+    }
 
     @Override
     public List<Medication> getMedicationsDroneIsCarrying(Long droneId) {
@@ -33,5 +43,23 @@ public class DroneServiceImpl implements DroneService {
         }
 
         return medicationOrders;
+    }
+
+    @Override
+    public Drone createDrone(Drone drone) {
+        return droneRepository.save(drone);
+    }
+
+    @Override
+    public Drone getDrone(Long drone_id) {
+        if (droneRepository.existsById(drone_id)) {
+            return droneRepository.getById(drone_id);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Drone> getDronesAvailableForLoading() {
+        return droneRepository.getAllDronesAvailableForLoading();
     }
 }
