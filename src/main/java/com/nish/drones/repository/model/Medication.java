@@ -62,4 +62,13 @@ public class Medication {
     public void setImage(byte[] image) {
         this.image = image;
     }
+
+    public Medication(String name, Double weight, String code) {
+        this.name = name;
+        this.weight = weight;
+        this.code = code;
+    }
+
+    public Medication() {
+    }
 }
