@@ -12,14 +12,14 @@ import com.nish.drones.repository.model.DroneResponse;
 import com.nish.drones.repository.model.Medication;
 import com.nish.drones.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.nish.drones.repository.helper.DroneModelType.*;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
