@@ -1,5 +1,6 @@
 package com.nish.drones.controller;
 
+import com.nish.drones.controller.request.DroneDto;
 import com.nish.drones.repository.DroneRepository;
 import com.nish.drones.repository.model.Drone;
 import com.nish.drones.service.DroneService;
@@ -21,7 +22,7 @@ public class DroneController {
     }
 
     @PostMapping("/drone")
-    public Drone addDrone(@Valid @RequestBody Drone drone) {
+    public Drone addDrone(@Valid @RequestBody DroneDto drone) {
         try {
             Drone createdDrone = droneService.createDrone(drone);
             return createdDrone;

@@ -1,5 +1,6 @@
 package com.nish.drones.service.impl;
 
+import com.nish.drones.controller.request.DroneDto;
 import com.nish.drones.repository.DeliveryRepository;
 import com.nish.drones.repository.DroneRepository;
 import com.nish.drones.repository.MedicationOrderRepository;
@@ -46,14 +47,14 @@ public class DroneServiceImpl implements DroneService {
     }
 
     @Override
-    public Drone createDrone(Drone drone) {
-        return droneRepository.save(drone);
+    public Drone createDrone(DroneDto drone) {
+        return droneRepository.save(drone.toDrone());
     }
 
     @Override
     public Drone getDrone(Long drone_id) {
         if (droneRepository.existsById(drone_id)) {
-            return droneRepository.getById(drone_id);
+            return droneRepository.findById(drone_id).get();
         }
         return null;
     }

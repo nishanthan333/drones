@@ -27,8 +27,9 @@ public class Medication {
     @NotBlank
     private String code;
 
-    @Column(columnDefinition = "text")
-    private String image;
+    @Lob
+    @Column(length=100000)
+    private byte[] image;
 
     public String getName() {
         return name;
@@ -54,11 +55,11 @@ public class Medication {
         this.code = code;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }

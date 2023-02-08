@@ -50,4 +50,10 @@ public class MedicationOrder {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+    public MedicationOrder(Medication medication, Delivery delivery, Integer quantity) {
+        this.medication = medication;
+        this.delivery = delivery;
+        this.quantity = quantity;
+    }
 }

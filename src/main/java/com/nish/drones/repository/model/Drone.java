@@ -4,7 +4,9 @@ import com.nish.drones.repository.helper.DroneModelType;
 import com.nish.drones.repository.helper.DroneState;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -25,10 +27,11 @@ public class Drone extends AuditModel {
     private String serialNumber;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private DroneModelType modelType;
 
-    @Column(precision = 10, scale = 2)
-    private Double weight;
+    @Column(precision=10, scale=2)
+    private Integer weight;
 
     @Column(precision = 10, scale = 2)
     private Double carryLimit;
@@ -64,11 +67,11 @@ public class Drone extends AuditModel {
         this.modelType = modelType;
     }
 
-    public Double getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(Double weight) {
+    public void setWeight(Integer weight) {
         this.weight = weight;
     }
 
@@ -94,5 +97,16 @@ public class Drone extends AuditModel {
 
     public void setDroneState(DroneState droneState) {
         this.droneState = droneState;
+    }
+
+    public Drone(String serialNumber, DroneModelType modelType, Integer weight, Double carryLimit) {
+        this.serialNumber = serialNumber;
+        this.modelType = modelType;
+        this.weight = weight;
+        this.carryLimit = carryLimit;
+        this.droneState = droneState;
+    }
+
+    public Drone() {
     }
 }
